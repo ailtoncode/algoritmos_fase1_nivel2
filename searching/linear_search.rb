@@ -2,37 +2,28 @@ class LinearSearch
     
     :list
     
-    def initialize
-        @list = []
+    def initialize(list)
+        @list = list.is_a?(Array) ? list : []
     end
 
-    def add_value_to_list(value)
-        @list << value
-    end
-
-    def search_value(value)
-        result = @list.index(value)
-        if(result == nil) 
-            return -1
+    def find(key)
+        length = @list.length
+        for i in 0..length do
+            if @list[i] == key
+                return i
+            end
         end
-        result
+        return -1
     end
 end
 
-linear_search = LinearSearch.new
-linear_search.add_value_to_list(2)
-linear_search.add_value_to_list(10)
-linear_search.add_value_to_list(9)
-linear_search.add_value_to_list(5)
-linear_search.add_value_to_list(27)
-linear_search.add_value_to_list(48)
+list = [10, 50, 30, 70, 80, 20, 90, 40]
+linear_search = LinearSearch.new(list)
 
-index_value = linear_search.search_value(10)
+index_value = linear_search.find(20)
 
 if index_value > -1
     puts "Valor encontrado no índice: #{index_value}"    
 else
     puts "Valor não encontrado"    
 end
-
-
