@@ -4,30 +4,38 @@ class BinarySearch
     :list
 
     def initialize(list)
-        if list.is_a?(Array)
-            @list = list
-        else
-            @list = []
-        end
+        @list = list.is_a?(Array) ? list : []
     end
 
     def search(x)
         ascending_order
-        count = 0
-        index = -1
-        while count < @list.length
-            if @list[count] == x
-                index = count
-                break
+
+        first_index = 0
+        last_index = @list.length-1
+        average_index = average(first_index, last_index)
+
+        for i in 0..average_index do
+            if @list[average_index] == x
+                return average_index
+            elsif x < @list[average_index]
+                last_index = average_index - 1
+            elsif x > @list[average_index]
+                first_index = average_index + 1
             end
-            count+= 1
+            average_index = average(first_index, last_index)
         end
-        return index
+
+        return -1
+
     end
 
     private
     def ascending_order
         @list = @list.sort
+    end
+
+    def average(first, last)
+        (first + last) / 2
     end
 
 end
