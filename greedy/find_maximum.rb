@@ -25,8 +25,8 @@ class FindMaximum
     private
     def sum_all(stacks)
         sum = []
-        for i in 0..(stacks.length-1) do
-            sum[i] = stacks[i].inject(:+).nil? ? 0 : stacks[i].inject(:+)
+        stacks.each_with_index do |stack, i|
+            sum[i] = stack.inject(:+).to_i
         end
         sum
     end
@@ -47,9 +47,10 @@ stacks = [
 ]
 =end
 stacks = [
-    [3, 2, 1, 1 , 1],
-    [4, 3, 2],
-    [2, 5, 4, 1]
+    [3, 10, 5],
+    [4, 5, 5, 3, 2],
+    [2, 1, 14],
+    [2, 1, 14]
 ]
 
 find_maximum = FindMaximum.new
